@@ -1,0 +1,19 @@
+<h1>Titles List</h1>
+<% if @titles.blank? %> 
+<br>No titles in database.<br> 
+<% else %> 
+<table border='1' cellspacing='2' cellpadding='2' width='90%'> 
+	<th width='40%'>Company Name</th> 
+    <th width='20%'>Last</th> 
+    <th width='20%'>Cur</th> 
+    <th width='20%'>Change</th> 
+		<% @titles.each do |e| %>
+			<tr>
+				<td><%= e.title %></td>
+				<td><%= e.current %></td>
+				<td><%= e.previous %></td>
+				<td>-</td>
+			</tr>
+		<% end %>
+</table>
+<% end %>

@@ -8,7 +8,7 @@ HelloRails::Application.routes.draw do
   get "title/new"
 
   get "home/index"
-  post "home/index"
+  get "home/startgame"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

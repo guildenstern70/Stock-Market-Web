@@ -1,3 +1,29 @@
-<h1>STOCKMARKET - THE GAME</h1>
-<p>by Alessio Saltarin</p>
-<%= link_to "List titles", title_path %>
+<div align="center">
+<p>LittleLite Software Games </p>
+<p>presents </p>
+<h1>STOCK MARKET ON RAILS</h1>
+<% if @players == 0 %>
+	<%= form_tag do %>
+	How many players?  
+	<%= select_tag(:nrplayers, options_for_select([1,2,3], :onchange => "this.form.submit();") ) %>
+	<br />
+	<% end %>
+<% else %>
+	<%= form_tag do %>
+	
+		<table border="0">
+			
+		<% for n in (1..@players)%>
+			<tr>
+				<td>Input your name:</td>
+				<td><%= text_field_tag 'name', nil, :placeholder => 'Enter your name, player...' %></td>
+			</tr>
+		<% end %>
+			
+	<% end %>	
+	</table>
+	<p>
+	<%= submit_tag("Start new game") %>	
+	</p>
+<% end %>
+</div>

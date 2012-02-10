@@ -1,0 +1,7 @@
+<div align="left">
+	Lista giocatori attivi:<br/>
+	<%= form_tag do %>
+	Existing players:
+	<%= select_tag "playersnow", options_from_collection_for_select(@players, "id", "name"), :multiple => true %>
+	<% end %>
+</div>

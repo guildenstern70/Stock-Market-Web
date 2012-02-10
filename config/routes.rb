@@ -9,6 +9,9 @@ HelloRails::Application.routes.draw do
 
   get "home/index"
   get "home/startgame"
+  
+  post "player/create"
+  get "player/list"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

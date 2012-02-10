@@ -3,7 +3,7 @@
 <p>presents </p>
 <h1>STOCK MARKET ON RAILS</h1>
 
-	<%= form_tag('/home/startgame', :method => :get) do %>
+	<%= form_tag('/player/create', :method => :post) do %>
 	Please insert your name:  
 	<%= text_field_tag 'playername', nil, :placeholder => 'Your name here...' %>
 	<br />

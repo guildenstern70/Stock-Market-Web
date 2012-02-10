@@ -12,6 +12,9 @@ HelloRails::Application.routes.draw do
   
   post "player/create"
   get "player/list"
+  
+  post "game/create"
+  get "game/create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -11,7 +11,7 @@ class PlayerController < ApplicationController
         if newplayer.nil? or newplayer.length == 0
           redirect_to :controller => 'home', :action => 'index'
         else
-          @player = Player.new(:name => newplayer, :game => 0)
+          @player = Player.new(:name => newplayer)
           if (@player.save)
             logger.debug("Ok. Player saved. Redirecting to Player-controller-list")
             redirect_to :action => 'list'

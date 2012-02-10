@@ -6,10 +6,10 @@ module HomeHelper
         @players = Player.find(:all)
         if (@players.length > 0)
             @players.each { |player|
-              logger.debug("Deleting player " << player.name)
-              player.destroy
+                logger.debug("Deleting player " << player.name)
+                player.destroy
             }
         end
     end
-    
+
 end

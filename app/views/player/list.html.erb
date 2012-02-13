@@ -1,7 +1,8 @@
 <div align="left">
 	<%= form_tag('/game/create', :method => :post) do %>
 	<p>Existing players:</p>
-	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), :multiple => true %>
+	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
+	    :multiple => true, :size => 10 %>
 	<br /><br />
 	<%= submit_tag("Invite these players to a new game") %>    
 	<% end %>

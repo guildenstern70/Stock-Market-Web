@@ -88,3 +88,15 @@ body {
 	color:#7B7B68;
 	text-align:right;
 }
+select {
+  border: 1px solid #AAA;
+  width: 190px;
+  color: #555;
+  font-size: inherit;
+  margin: 0;
+  overflow: hidden;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;}
+  

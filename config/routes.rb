@@ -1,4 +1,4 @@
-HelloRails::Application.routes.draw do
+StockMarket::Application.routes.draw do
   
   get "title/list"
   get "title/show"

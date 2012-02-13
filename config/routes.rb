@@ -11,6 +11,7 @@ StockMarket::Application.routes.draw do
   get "home/startgame"
   get "home/admin"
   get "home/commandresult"
+  get "home/logout"
   
   post "player/create"
   get "player/list"

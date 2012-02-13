@@ -3,4 +3,5 @@
 <img src="/images/marketopen.png" alt="Market Open" border="0" />
 </a>
 </div>
-&nbsp;&nbsp;Welcome to game <%= @gameid %> - Click on image to start
+&nbsp;&nbsp;Welcome to game <%= @gameid %> - Click on image to start - 
+<%= "#{session[:playername]} session id = #{request.session_options[:id]}" %>

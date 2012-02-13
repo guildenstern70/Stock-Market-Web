@@ -2,7 +2,11 @@ class HomeController < ApplicationController
     include HomeHelper
               
     def index
-
+    end
+    
+    def logout
+        reset_session
+        redirect_to :action => 'index'
     end
     
     def admin

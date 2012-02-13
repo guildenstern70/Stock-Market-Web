@@ -14,6 +14,7 @@ class PlayerController < ApplicationController
           @player = Player.new(:name => newplayer)
           if (@player.save)
             logger.debug("Ok. Player saved. Redirecting to Player-controller-list")
+            createsession(newplayer)
             redirect_to :action => 'list'
           else
             logger.error("KO. Cannot insert player")

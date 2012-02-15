@@ -14,7 +14,7 @@
     <th width='10%'>Share</th> 
 		<% @titles.each do |e| %>
 			<tr>
-			    <td><%= check_box_tag 'stockselect[]', e.title %></td>
+			    <td><%= check_box_tag 'stockselect[]', e.id %></td>
 				<td><%= e.title %></td>
 				<td><%= e.current %></td>
 				<td><%= e.previous %></td>
@@ -24,7 +24,7 @@
 				<td>&nbsp;</td>
 			</tr>
 		<% end %>
-</table>
+    </table>
 <p>&nbsp;</p>
 
         <%= submit_tag 'Sell', :name => 'commit' %>

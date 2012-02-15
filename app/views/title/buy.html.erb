@@ -1,11 +1,12 @@
-<h1>Selling <%= pluralize(@stocks.length, 'stock') %> </h1>
+<h1>Buying <%= pluralize(@stocks.length, 'stock') %> </h1>
+
 <p>
   <%= form_tag() do %>
     <table border='1' cellspacing='2' cellpadding='2' width='95%'> 
     <th width='40%'>Company Name</th> 
     <th width='20%'>Current</th> 
     <th width='20%'>You have</th> 
-    <th width='20%'>Sell</th> 
+    <th width='20%'>Buy</th> 
         <% @stocks.each do |e| %>
             <tr>
                 <td><%= e.title %></td>
@@ -17,7 +18,7 @@
     </table>
   <p>&nbsp;</p>
   <%= submit_tag 'Cancel', :name => 'commit' %>
-  <%= submit_tag 'Sell', :name => 'commit' %>
+  <%= submit_tag 'Buy', :name => 'commit' %>
   <% end %>
 
 </p>

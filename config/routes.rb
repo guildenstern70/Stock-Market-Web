@@ -1,14 +1,5 @@
 StockMarket::Application.routes.draw do
-  
-  get "title/list"
-  post "title/list"
-  get "title/show"
-  get "title/create"
-  get "title/edit"
-  get "title/delete"
-  get "title/new"
-  get "title/sell"
-  
+ 
   get "home/index"
   get "home/startgame"
   get "home/admin"
@@ -35,7 +26,16 @@ StockMarket::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-resources :title
+resources :title do
+  collection do
+    get 'sell'
+    post 'sell'
+    get 'buy'
+    post 'buy'
+    get 'list'
+    post 'list'
+  end
+end
 resources :portfolio
 
   # Sample resource route with options:

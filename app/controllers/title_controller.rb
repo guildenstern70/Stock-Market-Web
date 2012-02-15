@@ -1,4 +1,6 @@
 class TitleController < ApplicationController
+  include TitleHelper
+  
   def list
     @titles = Title.find(:all)
     
@@ -8,7 +10,10 @@ class TitleController < ApplicationController
           redirect_to :action => 'sell', :stocks => sellstock
         end
     elsif params[:commit] == 'Buy'
-        # B was pressed
+        sellstock = params[:stockselect]
+        if !sellstock.nil?
+          redirect_to :action => 'buy', :stocks => sellstock
+        end
     end
     
   end
@@ -16,11 +21,31 @@ class TitleController < ApplicationController
   def show
     @title = Title.find(params[:id])
   end
+  
+  def buy
+    @stock_ids = params[:stocks]
+    showstocks
+    
+    if params[:commit] == 'Buy'
+        # BUY!
+        redirect_to :action => 'list'  
+    elsif params[:commit] == 'Cancel' 
+        redirect_to :action => 'list'  
+    end
+    
+  end
 
   def sell
-    @stocks = params[:stocks]
-    logger.debug("Il giocatore #{getplayername()} vuole vendere #{@stock}")
+    @stock_ids = params[:stocks]
+    showstocks
     
+    if params[:commit] == 'Sell'
+        # SELL!
+        redirect_to :action => 'list'  
+    elsif params[:commit] == 'Cancel' 
+        redirect_to :action => 'list'  
+    end
+        
   end
   
   def create

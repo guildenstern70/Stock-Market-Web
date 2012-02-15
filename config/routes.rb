@@ -1,12 +1,14 @@
 StockMarket::Application.routes.draw do
   
   get "title/list"
+  post "title/list"
   get "title/show"
   get "title/create"
   get "title/edit"
   get "title/delete"
   get "title/new"
-
+  get "title/sell"
+  
   get "home/index"
   get "home/startgame"
   get "home/admin"

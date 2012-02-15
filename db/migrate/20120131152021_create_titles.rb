@@ -11,5 +11,8 @@ class CreateTitles < ActiveRecord::Migration
     
   end
   
+  # Default titles populated in seeds.rb
+  # Populate db with rake db:seed
+  
   
 end

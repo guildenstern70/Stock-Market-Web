@@ -26,17 +26,28 @@
   </tr>
   <tr>
     <td bgcolor="#E2E2D2" class="border" height="40">
-    <table width="65%" border="0" cellspacing="0" cellpadding="0">
-      <tr align="center">
-        <td><a href="index.html" class="toplinks">Documentation</a></td>
-        <td class="toplinks">|</td>
-        <td><a href="index.html" class="toplinks">Forum</a></td>
-        <td class="toplinks">|</td>
-        <td><a href="/home/admin" class="toplinks">Admin</a></td>
-        <td class="toplinks">|</td>
-        <td><a href="index.html" class="toplinks">Contact Us</a></td>
+    <table width="97%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="20%" align="center" >&nbsp;<a href="index.html" class="toplinks">Documentation</a></td>
+        <td width="2%" class="toplinks">|</td>
+        <td width="10%" align="center" ><a href="index.html" class="toplinks">Forum</a></td>
+        <td width="2%" class="toplinks">|</td>
+        <td width="10%"  align="center"><a href="/home/admin" class="toplinks">Admin</a></td>
+        <td width="2%" class="toplinks">|</td>
+        <td align="center" width="15%"><a href="index.html" class="toplinks">Contact Us</a></td>
+        <td align="right">
+           <% if !session[:playername].nil? %><i>
+               Logged in as <a href="#"></a><%= session[:playername] %></a></i>
+           <% else %>
+               &nbsp;
+           <% end %> 
+        </td>
       </tr>
-    </table></td>
+    </table>
+
+
+    
+    </td>
   </tr>
   <tr>
     <td height="10"></td>

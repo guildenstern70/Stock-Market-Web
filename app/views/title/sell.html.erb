@@ -1,0 +1,8 @@
+<h1>Selling <%= pluralize(@stocks.length, 'stock') %> /h1>
+<p>
+    <ul>    
+    <% @stocks.each do |stock| %>
+          <li><%= stock %></li>
+    <% end %>
+    </ul>
+</p>

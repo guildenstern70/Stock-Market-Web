@@ -10,7 +10,7 @@ class GameController < ApplicationController
     @gameplayers.each { |playerid|
     
       player = Player.find(playerid)
-      @game.players.
+      @game.players.create(:name => player.name)
       logger.debug("Aggiunto giocatore #{playerid} al game #{@gameid}")
         
     }

@@ -1,19 +1,40 @@
-<h1>Titles List</h1>
+<h1>Stocks</h1>
 <% if @titles.blank? %> 
-<br>No titles in database.<br> 
+    <br>No titles in database.<br> 
 <% else %> 
-<table border='1' cellspacing='2' cellpadding='2' width='90%'> 
-	<th width='40%'>Company Name</th> 
-    <th width='20%'>Last</th> 
-    <th width='20%'>Cur</th> 
-    <th width='20%'>Change</th> 
+    <%= form_tag() do %>
+    <table border='1' cellspacing='2' cellpadding='2' width='95%'> 
+    <th width="5%">&nbsp;</th>
+	<th width='35%'>Company Name</th> 
+    <th width='10%'>Last</th> 
+    <th width='10%'>Cur</th> 
+    <th width='10%'>Change</th> 
+    <th width='10%'>Cost</th> 
+    <th width='10%'>Profit</th> 
+    <th width='10%'>Share</th> 
 		<% @titles.each do |e| %>
 			<tr>
+			    <td><%= check_box_tag 'stockselect[]', e.title %></td>
 				<td><%= e.title %></td>
 				<td><%= e.current %></td>
 				<td><%= e.previous %></td>
 				<td>-</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 		<% end %>
 </table>
+<p>&nbsp;</p>
+
+        <%= submit_tag 'Sell', :name => 'commit' %>
+        <%= submit_tag 'Buy', :name => 'commit' %>
+        <%= submit_tag 'Loan', :name => 'commit' %>
+        <%= submit_tag 'Assets', :name => 'commit' %>
+        <%= submit_tag 'Graph', :name => 'commit' %>
+        <%= submit_tag 'End', :name => 'commit' %>
+        <%= submit_tag 'Top 15', :name => 'commit' %>
+        
+    <% end %>
+<p>&nbsp;</p>
 <% end %>

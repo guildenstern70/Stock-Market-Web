@@ -1,24 +1,38 @@
-<h1>Buying <%= pluralize(@stocks.length, 'stock') %> </h1>
-
+<% content_for :head do %>
+<%= javascript_include_tag 'prototype' %>
+<script type="text/javascript">
+	function computeValue(qty, value, id) {
+		var totalvalue = qty * value;
+		var d = $(id);
+		d.update(totalvalue);
+	}
+</script>
+<% end %> <h1>
+	Buying <%= pluralize(@stocks.length, 'stock') %></h1>
+<%= form_tag({:action => nil}, {:onkeypress => "return event.keyCode != 13;" }) do %>
+<table border='1' cellspacing='2' cellpadding='2' width='95%'>
+	<th width='40%'>Company Name</th>
+	<th width='15%'>Current</th>
+	<th width='15%'>You have</th>
+	<th width='15%'>Buy shares</th>
+	<th width='15%'>Buy $</th>
+	<% @stocks.each do |e| %>
+	<tr>
+		<td><%= e.title %></td>
+		<td><%= e.current %></td>
+		<td>0</td>
+		<td><%= text_field_tag 'buyqty[]', 0, 
+		        :onchange => "computeValue(this.value, #{e.current.to_s}, 'cval#{e.id.to_s}')"  %></td>
+		<td><span id="<%= 'cval' + e.id.to_s %>">0</span></td>
+	</tr>
+	<% end %>
+</table>
 <p>
-  <%= form_tag() do %>
-    <table border='1' cellspacing='2' cellpadding='2' width='95%'> 
-    <th width='40%'>Company Name</th> 
-    <th width='20%'>Current</th> 
-    <th width='20%'>You have</th> 
-    <th width='20%'>Buy</th> 
-        <% @stocks.each do |e| %>
-            <tr>
-                <td><%= e.title %></td>
-                <td><%= e.current %></td>
-                <td>0</td>
-                <td><%= text_field_tag 'sellqty[]', 0 %></td>
-            </tr>
-        <% end %>
-    </table>
-  <p>&nbsp;</p>
-  <%= submit_tag 'Cancel', :name => 'commit' %>
-  <%= submit_tag 'Buy', :name => 'commit' %>
-  <% end %>
-
+	&nbsp;
 </p>
+<p>
+	Your cash:
+</p>
+<%= submit_tag 'Cancel', :name => 'commit' %>
+<%= submit_tag 'Buy', :name => 'commit' %>
+<% end %> </p>

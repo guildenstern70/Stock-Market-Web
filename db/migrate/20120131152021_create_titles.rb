@@ -4,6 +4,7 @@ class CreateTitles < ActiveRecord::Migration
     
     create_table :titles do |t|
       t.string :title
+      t.string :sector
       t.float :current
       t.float :previous
       t.timestamps

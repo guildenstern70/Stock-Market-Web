@@ -14,12 +14,18 @@ class HomeController < ApplicationController
         logger.debug('COMMAND = ' << command) if (command)
                
         case command
-          when 'deleteall'
+          when 'deleteplayers'
               # Delete all previous players
               logger.debug('Deleting all players...')
-              deleteall
+              deleteplayers
               logger.debug('... done') 
               redirect_to :action => 'commandresult', :resp => 'All players deleted'
+          when 'deletegames'
+              # Delete all games
+              logger.debug('Deleting all games...')
+              deletegames
+              logger.debug('... done') 
+              redirect_to :action => 'commandresult', :resp => 'All games deleted'
         end 
     end
     

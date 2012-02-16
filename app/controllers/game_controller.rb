@@ -1,4 +1,5 @@
 class GameController < ApplicationController
+  include GameHelper
   
   def create
     @gameplayers = params[:playersids]
@@ -8,11 +9,7 @@ class GameController < ApplicationController
     logger.debug("Creato game #{@gameid}.")
     
     @gameplayers.each { |playerid|
-    
-      player = Player.find(playerid)
-      @game.players.create(:name => player.name)
-      logger.debug("Aggiunto giocatore #{playerid} al game #{@gameid}")
-        
+       createplayer(playerid)
     }
     
   end

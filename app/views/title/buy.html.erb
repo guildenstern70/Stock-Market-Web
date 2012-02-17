@@ -1,11 +1,18 @@
 <% content_for :head do %>
 <%= javascript_include_tag 'prototype' %>
 <script type="text/javascript">
+
+    Number.prototype.formatMoney = function(c, d, t) {
+    var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+     };
+ 
 	function computeValue(qty, value, id) {
 		var totalvalue = qty * value;
 		var d = $(id);
-		d.update(totalvalue);
+		d.update('$'+totalvalue.formatMoney(2, '.', ','));
 	}
+	
 </script>
 <% end %> <h1>
 	Buying <%= pluralize(@stocks.length, 'stock') %></h1>
@@ -14,8 +21,8 @@
 	<th width='40%'>Company Name</th>
 	<th width='15%'>Current</th>
 	<th width='15%'>You have</th>
-	<th width='15%'>Buy shares</th>
-	<th width='15%'>Buy $</th>
+	<th width='10%'>Buy shares</th>
+	<th width='20%'>Buy $</th>
 	<% @stocks.each do |e| %>
 	<tr>
 		<td><%= e.title %></td>
@@ -31,7 +38,7 @@
 	&nbsp;
 </p>
 <p>
-	Your cash:
+	<strong>Your cash: <%= number_to_currency(@player_money) %></strong>
 </p>
 <%= submit_tag 'Cancel', :name => 'commit' %>
 <%= submit_tag 'Buy', :name => 'commit' %>

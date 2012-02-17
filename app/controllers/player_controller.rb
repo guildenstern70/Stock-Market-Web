@@ -1,4 +1,5 @@
 class PlayerController < ApplicationController
+    include PlayerHelper
     
     def list
         logger.debug("Player-controller-list")
@@ -11,15 +12,7 @@ class PlayerController < ApplicationController
         if newplayer.nil? or newplayer.length == 0
           redirect_to :controller => 'home', :action => 'index'
         else
-          @player = Player.new(:name => newplayer)
-          if (@player.save)
-            logger.debug("Ok. Player saved. Redirecting to Player-controller-list")
-            createsession(newplayer)
-            redirect_to :action => 'list'
-          else
-            logger.error("KO. Cannot insert player")
-            redirect_to :controller => 'home', :action => 'index'
-          end   
+          createplayer(newplayer)
         end     
     end
     

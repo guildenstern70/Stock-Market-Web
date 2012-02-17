@@ -8,8 +8,11 @@ class GameController < ApplicationController
     @game.save
     logger.debug("Creato game #{@gameid}.")
     
+    # Add current session player to game
+    addplayertogame(getplayerid)
+    
     @gameplayers.each { |playerid|
-       createplayer(playerid)
+       addplayertogame(playerid)
     }
     
   end

@@ -1,6 +1,6 @@
 module TitleHelper
   
-  def showstocks()
+  def definestocks()
 
     if (!@stock_ids.nil?) and (@stock_ids.length > 0)
 

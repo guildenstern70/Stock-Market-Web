@@ -23,7 +23,9 @@ class GameController < ApplicationController
   end
   
   def show
-    @game = Game.find(params[:id])
+    gameid = params[:id]
+    @game = Game.find(gameid)
+    @players = get_players_of_the_game(gameid)
   end
   
 end

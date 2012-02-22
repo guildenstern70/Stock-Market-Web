@@ -5,14 +5,6 @@ StockMarket::Application.routes.draw do
   get "home/admin"
   get "home/commandresult"
   get "home/logout"
-  
-  get "player/create"
-  post "player/create"
-  get "player/list"
-  post "player/list"
-  
-  post "game/create"
-  get "game/create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -39,6 +31,15 @@ resources :title do
   end
 end
 resources :portfolio
+resources :player do
+  collection do
+    get 'list'
+    post 'list'
+  end
+end
+
+resources :game
+
 
   # Sample resource route with options:
   #   resources :products do

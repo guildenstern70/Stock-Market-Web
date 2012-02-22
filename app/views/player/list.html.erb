@@ -16,11 +16,15 @@
             onSuccess: function(transport)
             {
                 var json = transport.responseText.evalJSON();
-                var select = $('playersids')
-                select.options.length = 0; // clear out existing items
-                for(var i=0; i < json.length; i++) {
-                        var d = json[i];
-                        select.options.add(new Option(d.name, i))
+                var select = $('playersids');
+                if (json.length > 0)
+                {
+                    $('playersinline').update('Players waiting for a game:');
+                    select.options.length = 0; // clear out existing items
+                    for(var i=0; i < json.length; i++) {
+                            var d = json[i];
+                            select.options.add(new Option(d.name, d.id))
+                    }
                 }
             },
             onFailure: function()
@@ -35,11 +39,11 @@
 
 <div align="left">
 
-<%= form_tag('/game/create', :id => 'players_form', :remote => true) do %>
+<%= form_tag('/game', :id => 'players_form', :remote => true) do %>
     <% if @players.blank? %>
-        <p>Currently, there are no players. Please wait...</p>
+        <p id="playersinline">Currently, there are no players. Please wait...</p>
     <% else %>
-    	<p>Waiting players:</p>
+    	<p id="playersinline">Waiting players:</p>
     <% end %>
     	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
     	    :multiple => true, :size => 10 %>

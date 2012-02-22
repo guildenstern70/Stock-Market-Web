@@ -26,6 +26,10 @@ class PlayerController < ApplicationController
         end     
     end
     
+    def show
+        @player = Player.find(params[:id])
+    end
+    
     def delete
         logger.debug("Player-controller-delete")
         @player = Player.find(params[:id])

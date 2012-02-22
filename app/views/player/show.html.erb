@@ -1,0 +1,8 @@
+<h1>Current Player</h1>
+<%= form_for(@player) do |f| %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br /><br />
+    <%= f.label 'Current game' %><br />
+    <%= f.text_field :game %><br /><br />
+<% end %><br />
+<%= button_tag("Logout", :type => 'button', :onClick => 'window.location="/home/logout"') %>

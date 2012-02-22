@@ -3,14 +3,14 @@ class GameController < ApplicationController
   
   def create
     
+    @gameplayers = params[:playersids]
+    
     if (@gameplayers.nil?)
       redirect_to :controller => 'player', :action => 'list'
     else
-      @gameplayers = params[:playersids]
-      @gameid = Random.rand(10000)
-      @game = Game.new(:game => @gameid)
+      @game = Game.new()
       @game.save
-      logger.debug("Creato game #{@gameid}.")
+      logger.debug("Creato game #{@game.id}.")
       
       # Add current session player to game
       addplayertogame(getplayerid)
@@ -20,6 +20,10 @@ class GameController < ApplicationController
       }
     end
     
+  end
+  
+  def show
+    @game = Game.find(params[:id])
   end
   
 end

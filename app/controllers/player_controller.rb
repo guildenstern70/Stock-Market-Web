@@ -3,7 +3,17 @@ class PlayerController < ApplicationController
     
     def list
         logger.debug("Player-controller-list")
-        @players = Player.find(:all)
+        
+        @players = get_players_other_than_me()
+        
+        respond_to do |format|
+              format.html
+              format.xml { render :xml => @players }
+              format.json { render :json => @players }
+        end 
+                
+        command = params[:commit]
+        
     end
     
     def create

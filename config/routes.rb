@@ -6,8 +6,10 @@ StockMarket::Application.routes.draw do
   get "home/commandresult"
   get "home/logout"
   
+  get "player/create"
   post "player/create"
   get "player/list"
+  post "player/list"
   
   post "game/create"
   get "game/create"

@@ -27,8 +27,7 @@ class TitleController < ApplicationController
     @player_money = getcurrentplayer().money
     definestocks
     
-    if params[:commit] == 'Buy'
-        # BUY!
+    if params[:commit] == 'Buy' # BUY!
         redirect_to :action => 'list'  
     elsif params[:commit] == 'Cancel' 
         redirect_to :action => 'list'  
@@ -40,8 +39,7 @@ class TitleController < ApplicationController
     @stock_ids = params[:stocks]
     showstocks
     
-    if params[:commit] == 'Sell'
-        # SELL!
+    if params[:commit] == 'Sell'# SELL!
         redirect_to :action => 'list'  
     elsif params[:commit] == 'Cancel' 
         redirect_to :action => 'list'  

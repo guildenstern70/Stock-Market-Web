@@ -1,9 +1,50 @@
+<!-- player/list -->
+<% content_for :head do %>
+<%= javascript_include_tag 'prototype' %>
+<%= csrf_meta_tag %>
+<script type="text/javascript">
+    
+    function load_players()
+    {
+        new Ajax.Request('/player/list.json',
+          {
+            method:'get',
+            requestHeaders: 
+            {
+                'X-CSRF-Token': '<%= form_authenticity_token %>',
+            },
+            onSuccess: function(transport)
+            {
+                var json = transport.responseText.evalJSON();
+                var select = $('playersids')
+                select.options.length = 0; // clear out existing items
+                for(var i=0; i < json.length; i++) {
+                        var d = json[i];
+                        select.options.add(new Option(d.name, i))
+                }
+            },
+            onFailure: function()
+            { 
+                alert('Something went wrong...') 
+            }
+          });
+    }
+    
+</script>
+<% end %>
+
 <div align="left">
-	<%= form_tag('/game/create', :method => :post) do %>
-	<p>Existing players:</p>
-	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
-	    :multiple => true, :size => 10 %>
-	<br /><br />
-	<%= submit_tag("Invite these players to a new game") %>    
-	<% end %>
+
+<%= form_tag('/game/create', :id => 'players_form', :remote => true) do %>
+    <% if @players.blank? %>
+        <p>Currently, there are no players. Please wait...</p>
+    <% else %>
+    	<p>Waiting players:</p>
+    <% end %>
+    	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
+    	    :multiple => true, :size => 10 %>
+    	<br /><br />
+    	<%= submit_tag("Invite these players to a new game", :name => 'commit') %>&nbsp;
+    	<%= button_tag("Refresh", :type => 'button', :onClick => 'load_players()') %>
+<% end %>
 </div>

@@ -1,40 +1,7 @@
 <!-- player/list -->
 <% content_for :head do %>
-<%= javascript_include_tag 'prototype' %>
-<%= csrf_meta_tag %>
-<script type="text/javascript">
-    
-    function load_players()
-    {
-        new Ajax.Request('/player/list.json',
-          {
-            method:'get',
-            requestHeaders: 
-            {
-                'X-CSRF-Token': '<%= form_authenticity_token %>',
-            },
-            onSuccess: function(transport)
-            {
-                var json = transport.responseText.evalJSON();
-                var select = $('playersids');
-                if (json.length > 0)
-                {
-                    $('playersinline').update('Players waiting for a game:');
-                    select.options.length = 0; // clear out existing items
-                    for(var i=0; i < json.length; i++) {
-                            var d = json[i];
-                            select.options.add(new Option(d.name, d.id))
-                    }
-                }
-            },
-            onFailure: function()
-            { 
-                alert('Something went wrong...') 
-            }
-          });
-    }
-    
-</script>
+    <%= csrf_meta_tag %>
+    <%= javascript_include_tag params[:controller] %>
 <% end %>
 
 <div align="left">
@@ -49,6 +16,6 @@
     	    :multiple => true, :size => 10 %>
     	<br /><br />
     	<%= submit_tag("Invite these players to a new game", :name => 'commit') %>&nbsp;
-    	<%= button_tag("Refresh", :type => 'button', :onClick => 'load_players()') %>
+    	<%= button_to_function("Refresh", 'load_players()') %>
 <% end %>
 </div>

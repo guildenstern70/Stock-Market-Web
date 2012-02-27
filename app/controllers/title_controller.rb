@@ -3,18 +3,11 @@ class TitleController < ApplicationController
   
   def list
     @titles = Title.find(:all)
+    command = params[:commit]
     
-    if params[:commit] == 'Sell'
-        sellstock = params[:stockselect]
-        if !sellstock.nil?
-          redirect_to :action => 'sell', :stocks => sellstock
-        end
-    elsif params[:commit] == 'Buy'
-        sellstock = params[:stockselect]
-        if !sellstock.nil?
-          redirect_to :action => 'buy', :stocks => sellstock
-        end
-    end
+     if !command.nil?
+        redirect_to :action => command.downcase!, :stocks => params[:stockselect]
+     end
     
   end
 
@@ -48,7 +41,6 @@ class TitleController < ApplicationController
   end
   
   def create
-
   end
 
   def edit

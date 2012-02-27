@@ -14,12 +14,17 @@ class ApplicationController < ActionController::Base
       return session[:playername]
   end
   
-  def getplayer(playername)
-      return Player.where(:name => playername)
+  def getplayer(playerid)
+      return Player.find(playerid)
   end
   
   def getcurrentplayer()
-      return getplayer(getplayername())
+      player_id = getplayerid()
+      player = nil
+      if !player_id.nil?
+        player = getplayer(player_id)
+      end
+      return player
   end
 
 end

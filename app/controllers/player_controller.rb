@@ -28,6 +28,7 @@ class PlayerController < ApplicationController
     
     def show
         @player = Player.find(params[:id])
+        @session_player_id = session[:playerid]
     end
     
     def delete

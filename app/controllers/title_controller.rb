@@ -17,7 +17,9 @@ class TitleController < ApplicationController
   
   def buy
     @stock_ids = params[:stocks]
-    @player_money = getcurrentplayer().money
+    curplayer = getcurrentplayer()
+    logger.debug('Player '+curplayer.name+ ' wants to buy something');
+    @player_money = curplayer.money
     definestocks
     
     if params[:commit] == 'Buy' # BUY!

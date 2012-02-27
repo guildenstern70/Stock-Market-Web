@@ -5,8 +5,17 @@ class HomeController < ApplicationController
     end
     
     def logout
+        # Delete myself
+        player = getcurrentplayer()
+        player.destroy if !player.nil?
+        # Destroy session
         reset_session
         redirect_to :action => 'index'
+    end
+    
+    def deleteplayer(playerid)
+      player = Player.find(playerid)
+      player.delete
     end
     
     def admin

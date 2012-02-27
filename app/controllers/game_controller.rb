@@ -2,9 +2,7 @@ class GameController < ApplicationController
   include GameHelper
   
   def create
-    
     @gameplayers = params[:playersids]
-    
     if (@gameplayers.nil?)
       redirect_to :controller => 'player', :action => 'list'
     else
@@ -19,7 +17,6 @@ class GameController < ApplicationController
          addplayertogame(playerid)
       }
     end
-    
   end
   
   def show

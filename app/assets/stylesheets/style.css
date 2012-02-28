@@ -99,4 +99,12 @@ select {
   padding-bottom: 2px;
   text-overflow: ellipsis;
   white-space: nowrap;}
+
+.button_to {
+  display: inline;
+}
+
+.button_to div {
+  display: inline;
+}
   

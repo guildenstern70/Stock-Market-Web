@@ -3,43 +3,27 @@ class TitleController < ApplicationController
   
   def list
     @titles = Title.find(:all)
-    command = params[:commit]
-    
-     if !command.nil?
-        redirect_to :action => command.downcase!, :stocks => params[:stockselect]
-     end
-    
   end
 
   def show
     @title = Title.find(params[:id])
   end
   
-  def buy
-    @stock_ids = params[:stocks]
-    curplayer = getcurrentplayer()
-    logger.debug('Player '+curplayer.name+ ' wants to buy something');
-    @player_money = curplayer.money
-    definestocks
-    
-    if params[:commit] == 'Buy' # BUY!
-        redirect_to :action => 'list'  
-    elsif params[:commit] == 'Cancel' 
-        redirect_to :action => 'list'  
+  def action
+    command = params[:commit] 
+    if !command.nil?
+        @player_money = curplayer.money
+        @stocks = find_stocks(params[:stockselect])
+        render command.downcase!
     end
-    
+  end
+  
+  def buy
+    logger.debug(getplayername() + ' wants to BUY ')
   end
 
   def sell
-    @stock_ids = params[:stocks]
-    showstocks
-    
-    if params[:commit] == 'Sell'# SELL!
-        redirect_to :action => 'list'  
-    elsif params[:commit] == 'Cancel' 
-        redirect_to :action => 'list'  
-    end
-        
+    logger.debug(getplayername() + ' wants to SELL ')
   end
   
   def create

@@ -28,6 +28,7 @@ resources :title do
     post 'buy'
     get 'list'
     post 'list'
+    post 'action'
   end
 end
 resources :portfolio

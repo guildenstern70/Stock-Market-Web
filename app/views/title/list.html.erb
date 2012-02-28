@@ -2,7 +2,7 @@
 <% if @titles.blank? %> 
     <br />No titles in database.<br /> 
 <% else %> 
-    <%= form_tag() do %>
+    <%= form_tag('/title/action') do %>
     <table border='1' cellspacing='2' cellpadding='2' width='95%'> 
     <th width="5%">&nbsp;</th>
 	<th width='35%'>Company Name</th> 
@@ -29,11 +29,12 @@
 
         <%= submit_tag 'Sell', :name => 'commit' %>
         <%= submit_tag 'Buy', :name => 'commit' %>
-        <%= submit_tag 'Loan', :name => 'commit' %>
-        <%= submit_tag 'Assets', :name => 'commit' %>
-        <%= submit_tag 'Graph', :name => 'commit' %>
-        <%= submit_tag 'End', :name => 'commit' %>
-        <%= submit_tag 'Top 15', :name => 'commit' %>
+       
+        <%= link_to "Loan", :action => 'loan' %>
+        <%= link_to "Assets", :action => "assets" %>
+        <%= link_to "Graph", :action => "graph" %>
+        <%= link_to "End Turn", :action => "endturn" %>
+        <%= link_to "Top 15", :action => "top15" %>
         
     <% end %>
 <p>&nbsp;</p>

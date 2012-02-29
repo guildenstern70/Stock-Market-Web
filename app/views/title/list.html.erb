@@ -27,14 +27,13 @@
     </table>
 <p>&nbsp;</p>
 
-        <%= submit_tag 'Sell', :name => 'commit' %>
-        <%= submit_tag 'Buy', :name => 'commit' %>
-       
-        <%= link_to "Loan", :action => 'loan' %>
-        <%= link_to "Assets", :action => "assets" %>
-        <%= link_to "Graph", :action => "graph" %>
-        <%= link_to "End Turn", :action => "endturn" %>
-        <%= link_to "Top 15", :action => "top15" %>
+        <%= submit_tag 'Sell', :name => 'commit', :class => "stylebutton" %>
+        <%= submit_tag 'Buy', :name => 'commit', :class => "stylebutton" %>
+        <%= link_to "Loan", { :action => 'loan' }, :class => "stylebutton" %>
+        <%= link_to "Assets", { :action => "assets" }, :class => "stylebutton" %>
+        <%= link_to "Graph", { :action => "graph" }, :class => "stylebutton" %>
+        <%= link_to "End Turn", { :action => "endturn" } , :class => "stylebutton" %>
+        <%= link_to "Top 15", { :action => "top15" }, :class => "stylebutton" %>
         
     <% end %>
 <p>&nbsp;</p>

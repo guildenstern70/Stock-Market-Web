@@ -16,7 +16,7 @@
 </script>
 <% end %> <h1>
 	Buying <%= pluralize(@stocks.length, 'stock') %></h1>
-<%= form_tag({:action => nil}, {:onkeypress => "return event.keyCode != 13;" }) do %>
+<%= form_tag({:action => 'buy'}, {:onkeypress => "return event.keyCode != 13;" }) do %>
 <table border='1' cellspacing='2' cellpadding='2' width='95%'>
 	<th width='40%'>Company Name</th>
 	<th width='15%'>Current</th>
@@ -25,7 +25,7 @@
 	<th width='20%'>Buy $</th>
 	<% @stocks.each do |e| %>
 	<tr>
-		<td><%= e.title %></td>
+		<td><%= e.title %><%= hidden_field_tag 'id[]', e.id %></td>
 		<td><%= e.current %></td>
 		<td>0</td>
 		<td><%= text_field_tag 'buyqty[]', 0, 
@@ -40,6 +40,6 @@
 <p>
 	<strong>Your cash: <%= number_to_currency(@player_money) %></strong>
 </p>
-<%= submit_tag 'Cancel', :name => 'commit' %>
-<%= submit_tag 'Buy', :name => 'commit' %>
+<%= submit_tag 'Cancel', :name => 'commit', :class => 'stylebutton' %>
+<%= submit_tag 'Buy', :name => 'commit', :class => 'stylebutton' %>
 <% end %> </p>

@@ -12,6 +12,7 @@ class TitleController < ApplicationController
   def action
     command = params[:commit] 
     if !command.nil?
+        curplayer = getcurrentplayer()
         @player_money = curplayer.money
         @stocks = find_stocks(params[:stockselect])
         render command.downcase!
@@ -19,7 +20,18 @@ class TitleController < ApplicationController
   end
   
   def buy
-    logger.debug(getplayername() + ' wants to BUY ')
+    qtyarray = params[:buyqty]
+    stocks = find_stocks(params[:id])
+    logger.debug 'BUY CONTROLLER: ' + stocks.to_s
+    if !qtyarray.nil? && qtyarray.length > 0
+        logger.debug getplayername() + ' wants to BUY ' + qtyarray.length.to_s + ' stocks'
+        counter = 0
+        stocks.each { |stk|
+          logger.debug getplayername() + ' buying > ' + qtyarray[counter] + ' ' + stk.title
+          counter += 1
+        }
+    end  
+    redirect_to '/title/list'
   end
 
   def sell

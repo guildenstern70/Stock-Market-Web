@@ -14,22 +14,19 @@
 ActiveRecord::Schema.define(:version => 20120216113000) do
 
   create_table "games", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "note"
   end
 
   create_table "players", :force => true do |t|
-    t.string   "name"
-    t.integer  "money"
-    t.integer  "game_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string  "name"
+    t.integer "money"
+    t.integer "game_id"
   end
 
   create_table "portfolios", :force => true do |t|
-    t.string   "portfolioname"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string  "portfolioname"
+    t.integer "player_id"
+    t.integer "title_id"
   end
 
   create_table "sessions", :force => true do |t|
@@ -43,12 +40,10 @@ ActiveRecord::Schema.define(:version => 20120216113000) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "titles", :force => true do |t|
-    t.string   "title"
-    t.string   "sector"
-    t.float    "current"
-    t.float    "previous"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "title"
+    t.string "sector"
+    t.float  "current"
+    t.float  "previous"
   end
 
 end

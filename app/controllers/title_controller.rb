@@ -22,9 +22,7 @@ class TitleController < ApplicationController
   def buy
     qtyarray = params[:buyqty]
     stocks = find_stocks(params[:id])
-    logger.debug 'BUY CONTROLLER: ' + stocks.to_s
     if !qtyarray.nil? && qtyarray.length > 0
-        logger.debug getplayername() + ' wants to BUY ' + qtyarray.length.to_s + ' stocks'
         counter = 0
         stocks.each { |stk|
           logger.debug getplayername() + ' buying > ' + qtyarray[counter] + ' ' + stk.title

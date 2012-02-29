@@ -1,5 +1,6 @@
 class Title < ActiveRecord::Base
-    belongs_to :portfolio
+    has_many :portfolios
+    has_many :players, :through => :portfolios
     
     # Title Model
     

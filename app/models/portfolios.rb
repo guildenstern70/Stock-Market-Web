@@ -1,5 +1,6 @@
 class Portfolios < ActiveRecord::Base
-    has_many :titles
+    belongs_to :player
+    belongs_to :title
     
     # Portfolio Model
     

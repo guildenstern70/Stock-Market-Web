@@ -7,7 +7,6 @@ class CreateTitles < ActiveRecord::Migration
       t.string :sector
       t.float :current
       t.float :previous
-      t.timestamps
     end
     
   end

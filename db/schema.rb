@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(:version => 20120216113000) do
   end
 
   create_table "portfolios", :force => true do |t|
-    t.string  "portfolioname"
     t.integer "player_id"
     t.integer "title_id"
+    t.integer "quantity"
   end
 
   create_table "sessions", :force => true do |t|

@@ -9,5 +9,15 @@ module TitleHelper
     end
     return stocks
   end
+  
+  def buy_stocks(stocks, quantities)
+    player = getcurrentplayer()
+    counter = 0
+    stocks.each { |stock|
+      
+      player.portfolios.create( :title => stock, :quantity => quantities[counter] )
+      counter += 1
+    }
+  end
 
 end

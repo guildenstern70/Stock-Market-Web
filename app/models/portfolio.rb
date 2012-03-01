@@ -1,4 +1,4 @@
-class Portfolios < ActiveRecord::Base
+class Portfolio < ActiveRecord::Base
     belongs_to :player
     belongs_to :title
     

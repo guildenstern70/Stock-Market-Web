@@ -2,7 +2,10 @@ class TitleController < ApplicationController
   include TitleHelper
   
   def list
-    @titles = Title.find(:all)
+    playerid = getplayerid()
+    @titles = Title.find(:all,
+                         :select => 'titles.id, titles.title, titles.current, titles.previous,  portfolios.quantity, portfolios.player_id', 
+                         :joins => 'LEFT OUTER JOIN portfolios ON titles.id = title_id AND portfolios.player_id ='+playerid.to_s)
   end
 
   def show
@@ -28,8 +31,9 @@ class TitleController < ApplicationController
           logger.debug getplayername() + ' buying > ' + qtyarray[counter] + ' ' + stk.title
           counter += 1
         }
-    end  
-    redirect_to '/title/list'
+        buy_stocks(stocks, qtyarray)
+    end
+    redirect_to :action => 'list'
   end
 
   def sell
@@ -49,6 +53,6 @@ class TitleController < ApplicationController
   end
 
   def index
-    redirect_to :controller => 'title', :action => 'list'  # redirects to Title/List
+    redirect_to :action => 'list'  # redirects to Title/List
   end
 end

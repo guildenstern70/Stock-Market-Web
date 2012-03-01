@@ -6,7 +6,7 @@ class CreatePortfolios < ActiveRecord::Migration
       t.references :player
       t.references :title
       t.integer :quantity
-      t.integer :cost
+      t.float :cost
     end
     
   end

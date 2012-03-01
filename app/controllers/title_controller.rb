@@ -4,7 +4,7 @@ class TitleController < ApplicationController
   def list
     playerid = getplayerid()
     @titles = Title.find(:all,
-                         :select => 'titles.id, titles.title, titles.current, titles.previous,  portfolios.quantity, portfolios.player_id', 
+                         :select => 'titles.id, titles.title, titles.current, titles.previous,  portfolios.quantity, portfolios.cost', 
                          :joins => 'LEFT OUTER JOIN portfolios ON titles.id = title_id AND portfolios.player_id ='+playerid.to_s)
   end
 

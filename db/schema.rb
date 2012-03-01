@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120216113000) do
     t.integer "player_id"
     t.integer "title_id"
     t.integer "quantity"
+    t.integer "cost"
   end
 
   create_table "sessions", :force => true do |t|

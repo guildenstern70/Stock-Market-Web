@@ -16,6 +16,11 @@ class PlayerController < ApplicationController
         
     end
     
+    def message
+        nr = rand(10000..99999)
+        render :text => nr.to_s
+    end
+    
     def create
         logger.debug("Player-controller-create")
         newplayer = params[:playername]

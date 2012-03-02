@@ -36,6 +36,7 @@ resources :player do
   collection do
     get 'list'
     post 'list'
+    get 'message'
   end
 end
 

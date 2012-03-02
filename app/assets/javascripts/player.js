@@ -1,9 +1,17 @@
 //= require prototype
 
+function check_messages()
+{
+	new Ajax.PeriodicalUpdater("messages", 
+      "/player/message", 
+      { frequency: 4, 
+        method: 'get' });
+}
+
 function load_players()
 {
     new Ajax.Request('/player/list.json',
-      {
+    {
         method:'get',
         requestHeaders: 
         {
@@ -25,9 +33,15 @@ function load_players()
         },
         onFailure: function()
         { 
-            alert('Something went wrong...') 
+            select.options.length = 0; // clear out existing items
+            select.options.add(new Option('-- Error on fetching players --', 0))
         }
       });
+}
+
+window.onload=function() {
+	check_messages();
+	new PeriodicalExecuter(load_players, 3);
 }
     
 

@@ -2,6 +2,15 @@ class GameController < ApplicationController
   include GameHelper
   
   def create
+    
+    # Quando la logica entra qua
+    # bisogna gestire due casi:
+    # - Ho invitato TIZIO e questi ha detto sì
+    # - Sono stato invitato da CAIO e ho detto sì
+    # negli altri casi
+    # -  redirect_to :controller => 'player', :action => 'list'
+    #
+    
     @gameplayers = params[:playersids]
     if (@gameplayers.nil?)
       redirect_to :controller => 'player', :action => 'list'

@@ -9,7 +9,7 @@
 <table border="0" width="95%" cellpadding="5">
     <tr>
         <td width="50%">
-        <%= form_tag('/game', :id => 'players_form', :remote => true) do %>
+        <%= form_tag('/game', :id => 'players_form') do %>
             <% if @players.blank? %>
                 <p id="playersinline">Currently, there are no players. Please wait...</p>
             <% else %>
@@ -18,14 +18,22 @@
             	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
             	    :multiple => true, :size => 10 %>
             	<br /><br />
-            	<%= submit_tag("Invite these players to a new game", :name => 'commit') %>&nbsp;
+            	<%= submit_tag("Invite these players to a new game", :name => 'commit', :class => "stylebutton") %>
         <% end %>
         </td>
         <td>
             <table width="90%" bgcolor="#FF9999"><tr><td>
-            <div id="messages">
-                &nbsp;
-            </div>
+                <div id="messages">&nbsp;</div>
+                <div id="invitation" style="display:none">
+                    <%= form_tag('/game', :id => 'join_game_form') do %>
+                        <div id="proposal">xxx has invited you to join a game.</div>
+                        <div id="question">Do you accept?</div><br/>
+                        <div>
+                            <%= submit_tag("Yes", :name => 'commit', :class => "stylebutton") %>&nbsp;
+                            <%= submit_tag("No", :name => 'commit', :class => "stylebutton") %>
+                        </div>
+                    <% end %>
+                </div>
             </tr>
             </td>
             </table>

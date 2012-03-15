@@ -14,6 +14,20 @@ module PlayerHelper
           end   
   end
   
+  def any_request_for_me?
+      nr = rand(0..100)
+      request = false
+      if (nr < 20)
+        request = true
+      end
+      return request
+  end
+  
+  def get_inviter()
+      pl = Player.random
+      return pl.name
+  end
+  
   def get_players_other_than_me()
       pls = Player.find(:all)
       pls.delete_if { |player| player.id == getplayerid() }

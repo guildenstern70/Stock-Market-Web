@@ -16,6 +16,24 @@ class PlayerController < ApplicationController
         
     end
     
+    def invite
+        
+        @inviter = nil
+        
+        logger.debug '======= INVITE REQUEST ========'
+       
+        if any_request_for_me?
+          logger.debug 'The request was for me!'
+          @inviter = get_inviter()
+          logger.debug 'Invited by '+@inviter
+        else
+          logger.debug 'OOOPPSSS! The request was NOT for me!'
+        end
+        
+        render :text => @inviter
+        
+    end
+    
     def message
         nr = rand(10000..99999)
         render :text => nr.to_s

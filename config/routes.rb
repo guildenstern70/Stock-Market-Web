@@ -37,6 +37,7 @@ resources :player do
     get 'list'
     post 'list'
     get 'message'
+    get 'invite'
   end
 end
 

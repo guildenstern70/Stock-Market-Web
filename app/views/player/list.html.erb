@@ -23,14 +23,13 @@
         </td>
         <td>
             <table width="90%" bgcolor="#FF9999"><tr><td>
-                <div id="messages">&nbsp;</div>
                 <div id="invitation" style="display:none">
                     <%= form_tag('/game', :id => 'join_game_form') do %>
                         <div id="proposal">xxx has invited you to join a game.</div>
                         <div id="question">Do you accept?</div><br/>
                         <div>
                             <%= submit_tag("Yes", :name => 'commit', :class => "stylebutton") %>&nbsp;
-                            <%= submit_tag("No", :name => 'commit', :class => "stylebutton") %>
+                            <%= button_to_function("No", "decline_invite();", :class => "stylebutton") %>
                         </div>
                     <% end %>
                 </div>

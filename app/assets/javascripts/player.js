@@ -1,10 +1,19 @@
 //= require prototype
 
 function check_messages() {
+	
 	new Ajax.PeriodicalUpdater('messages', 
       '/player/message', 
       { frequency: 4, 
         method: 'get' });
+}
+
+function decline_invite() {
+	
+	$('invitation').hide();
+	// Restart invite requests pull
+	new PeriodicalExecuter( function(pe) { get_invite_request(pe) }, 3);
+	 
 }
 
 function get_invite_request(processor) {
@@ -22,7 +31,7 @@ function get_invite_request(processor) {
         	if (inviter.length > 1)
         	{
         		$('invitation').show(); 
-        		$('proposal').update(inviter + 'invites you to join a game:');
+        		$('proposal').update(inviter + ' invites you to join a game:');
         		processor.stop();
         	}
         },
@@ -36,6 +45,7 @@ function get_invite_request(processor) {
 }
 
 function load_players() {
+	
     new Ajax.Request('/player/list.json',
     {
         method:'get',
@@ -67,8 +77,8 @@ function load_players() {
 
 window.onload=function() {
 	//check_messages();
-	//new PeriodicalExecuter(load_players, 3);
-	new PeriodicalExecuter( function(pe) { get_invite_request(pe) }, 4);
+	new PeriodicalExecuter( load_players, 3);
+	new PeriodicalExecuter( function(pe) { get_invite_request(pe) }, 3);
 }
     
 

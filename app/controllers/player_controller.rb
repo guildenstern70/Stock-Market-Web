@@ -3,25 +3,18 @@ class PlayerController < ApplicationController
     
     def list
         logger.debug("Player-controller-list")
-        
         @players = get_players_other_than_me()
-        
         respond_to do |format|
               format.html
               format.xml { render :xml => @players }
               format.json { render :json => @players }
         end 
-                
         command = params[:commit]
-        
     end
     
-    def invite
-        
+    def lookforinvitations  
         @inviter = nil
-        
         logger.debug '======= INVITE REQUEST ========'
-       
         if any_request_for_me?
           logger.debug 'The request was for me!'
           @inviter = get_inviter()
@@ -29,9 +22,7 @@ class PlayerController < ApplicationController
         else
           logger.debug 'OOOPPSSS! The request was NOT for me!'
         end
-        
         render :text => @inviter
-        
     end
     
     def message

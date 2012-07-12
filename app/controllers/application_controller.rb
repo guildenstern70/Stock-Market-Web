@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
   end
   
   def getplayer(playerid)
-      return Player.find(playerid)
+      begin
+        plr = Player.find(playerid)
+      rescue
+        plr = nil
+      end
   end
   
   def getcurrentplayer()

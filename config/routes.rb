@@ -31,13 +31,15 @@ resources :title do
     post 'action'
   end
 end
+
 resources :portfolio
+
 resources :player do
   collection do
     get 'list'
     post 'list'
     get 'message'
-    get 'invite'
+    get 'lookforinvitations'
   end
 end
 

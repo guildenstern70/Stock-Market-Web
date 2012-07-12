@@ -16,9 +16,9 @@ function decline_invite() {
 	 
 }
 
-function get_invite_request(processor) {
+function lookfor_invitations(processor) {
 	
-	new Ajax.Request('/player/invite',
+	new Ajax.Request('/player/lookforinvitations',
 	{
 		method:'get',
         requestHeaders: 
@@ -72,13 +72,14 @@ function load_players() {
             select.options.length = 0; // clear out existing items
             select.options.add(new Option('-- Error on fetching players --', 0))
         }
-      });
+    });
 }
 
 window.onload=function() {
+	alert('Hello!!');
 	//check_messages();
-	new PeriodicalExecuter( load_players, 3);
-	new PeriodicalExecuter( function(pe) { get_invite_request(pe) }, 3);
+	//new PeriodicalExecuter( load_players, 3);  // fill players list
+	//new PeriodicalExecuter( function(pe) { lookfor_invitations(pe) }, 3); // search for an invitation
 }
     
 

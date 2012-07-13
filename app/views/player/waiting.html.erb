@@ -1,0 +1,34 @@
+<!-- player/waiting -->
+
+<% content_for :head do %>
+<%= csrf_meta_tag %>
+<%= javascript_include_tag 'waiting' %>
+<% end %>
+
+<table border="0" width="95%" cellpadding="5">
+	<tr>
+		<td>
+		<table width="90%" bgcolor="#FF9999">
+			<tr>
+				<td>
+				<div id="invitation" style="display:none">
+					<%= form_tag('/game', :id => 'join_game_form') do %>
+					<div id="proposal">
+						xxx has invited you to join a game.
+					</div>
+					<div id="question">
+						Do you accept?
+					</div>
+					<br/>
+					<div>
+						<%= submit_tag("Yes", :name => 'commit', :class => "stylebutton") %>&nbsp;
+						<%= button_to_function("No", "decline_invite();", :class => "stylebutton") %>
+					</div>
+					<% end %>
+				</div>
+			</tr>
+		</td>
+</table>
+</td>
+</tr>
+</table>

@@ -1,42 +1,29 @@
 <!-- player/list -->
 <% content_for :head do %>
-    <%= csrf_meta_tag %>
-    <%= javascript_include_tag params[:controller] %>
+<%= csrf_meta_tag %>
+<%= javascript_include_tag params[:controller] %>
 <% end %>
 
 <div align="left">
 
-<table border="0" width="95%" cellpadding="5">
-    <tr>
-        <td width="50%">
-        <%= form_tag('/game', :id => 'players_form') do %>
-            <% if @players.blank? %>
-                <p id="playersinline">Currently, there are no players. Please wait...</p>
-            <% else %>
-            	<p id="playersinline">Waiting players:</p>
-            <% end %>
-            	<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), 
-            	    :multiple => true, :size => 10 %>
-            	<br /><br />
-            	<%= submit_tag("Invite these players to a new game", :name => 'commit', :class => "stylebutton") %>
-        <% end %>
-        </td>
-        <td>
-            <table width="90%" bgcolor="#FF9999"><tr><td>
-                <div id="invitation" style="display:none">
-                    <%= form_tag('/game', :id => 'join_game_form') do %>
-                        <div id="proposal">xxx has invited you to join a game.</div>
-                        <div id="question">Do you accept?</div><br/>
-                        <div>
-                            <%= submit_tag("Yes", :name => 'commit', :class => "stylebutton") %>&nbsp;
-                            <%= button_to_function("No", "decline_invite();", :class => "stylebutton") %>
-                        </div>
-                    <% end %>
-                </div>
-            </tr>
-            </td>
-            </table>
-        </td>
-    </tr>
-</table>
+	<table border="0" width="95%" cellpadding="5">
+		<tr>
+			<td width="50%"> <%= form_tag('/game', :id => 'players_form') do %>
+			<% if @players.blank? %>
+			<p id="playersinline">
+				Currently, there are no players. Please wait...
+			</p> <% else %>
+			<p id="playersinline">
+				Lobby:
+			</p> <% end %>
+			<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"),
+			:multiple => true, :size => 10 %>
+			<br />
+			<br />
+			<%= submit_tag("Invite player(s) to a new game", :name => 'commit', :class => 'stylebutton') %>
+			&nbsp; - OR -
+			<%= button_tag("Wait for an invitation...", :type => 'button', :class => 'stylebutton', :onClick => 'window.location="/player/waiting"') %>
+			<% end %> </td>
+		</tr>
+	</table>
 </div>

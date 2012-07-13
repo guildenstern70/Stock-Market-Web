@@ -38,6 +38,7 @@ resources :player do
   collection do
     get 'list'
     post 'list'
+    get 'waiting'
     get 'message'
     get 'lookforinvitations'
   end

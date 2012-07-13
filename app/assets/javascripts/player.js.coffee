@@ -6,26 +6,25 @@
 
 pe = null
 
-invitations_args =
-  method: 'get'
+loadplayers_args =
+  method:'get'
   requestHeaders: { 'X-CSRF-Token': '<%= form_authenticity_token %>' }
   onSuccess: (transport) ->
-    inviter = transport.responseText
-    if inviter.length > 1
-      $('invitation').show()
-      $('proposal').update(inviter + ' invites you to join a game:')
-      pe.stop()
-      return
+    json = transport.responseText.evalJSON()
+    select = $('playersids')
+    if json.length > 0
+      $('playersinline').update('Players waiting for a game:')
+      select.options.length = 0
+      select.options.add new Option(d.name, d.id) for d in json
   onFailure: ->
-    $('invitation').show() 
-    $('proposal').update('Error retrieving invitation')
-    return
-
-invitations = ->
-  new Ajax.Request '/player/lookforinvitations', invitations_args
+    select.options.length = 0;
+    select.options.add(new Option('-- Error on fetching players --', 0))
+      
+loadplayers = ->
+  new Ajax.Request '/player/list.json', loadplayers_args
   
 main_loop = ->
-  pe = new PeriodicalExecuter( invitations, 3 )
+  pe = new PeriodicalExecuter( loadplayers, 3 )
 
 Event.observe(window, 'load', main_loop)
 

@@ -12,6 +12,10 @@ class PlayerController < ApplicationController
         command = params[:commit]
     end
     
+    def waiting
+        logger.debug("Player-controller-waiting")
+    end
+    
     def lookforinvitations  
         @inviter = nil
         logger.debug '======= INVITE REQUEST ========'

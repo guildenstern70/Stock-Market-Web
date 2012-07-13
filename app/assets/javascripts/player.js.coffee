@@ -13,7 +13,7 @@ loadplayers_args =
     json = transport.responseText.evalJSON()
     select = $('playersids')
     if json.length > 0
-      $('playersinline').update('Players waiting for a game:')
+      $('playersinline').update('Lobby:')
       select.options.length = 0
       select.options.add new Option(d.name, d.id) for d in json
   onFailure: ->

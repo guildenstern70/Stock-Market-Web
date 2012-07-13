@@ -4,10 +4,14 @@
     <p>&nbsp;</p>
     <% if session[:playername].nil? %>
     	<%= form_tag('/player', :method => :post) do %>
-    	Please insert your name:  
-    	<%= text_field_tag 'playername', nil, :placeholder => 'Your name here...' %>
-    	<br /><br />
-    	<%= submit_tag("Join games room") %>	
+        	Please insert your name:  
+        	<%= text_field_tag 'playername', nil, :placeholder => 'Your name here...' %>
+        	<br />
+        	<% if not @error.blank? %>
+        	<div id='errorspace'><%= @error %></div>
+        	<% end %>
+        	<br />
+        	<%= submit_tag("Join games room") %>	
     	<% end %>
     <% else %>
         <a href="/title/list">Proceed to game, <%= session[:playername] %></a> - or - 

@@ -4,14 +4,24 @@ module PlayerHelper
   
   def createplayer(playername)
       @player = Player.new(:name => playername, :money => DEFAULT_INITIAL_MONEY)
-          if (@player.save)
-            logger.debug("Ok. Player saved. Redirecting to Player-controller-list")
-            createsession(@player)
-            redirect_to :action => 'list'
-          else
-            logger.error("KO. Cannot insert player")
-            redirect_to :controller => 'home', :action => 'index'
-          end   
+      error = nil
+      begin
+        if (@player.save)
+          logger.debug("Ok. Player saved. Redirecting to Player-controller-list")
+          createsession(@player)
+          redirect_to :action => 'list'
+          playercreated = false
+        else
+          logger.error("KO. Unknown error.")
+          error = "General error: cannot create player."
+          redirect_to :controller => 'home', :action => 'index'
+        end
+      rescue ActiveRecord::RecordNotUnique
+          logger.error("KO. Cannot insert player: duplicate name?")
+          error = "Name exists. Please choose another name and retry."
+          redirect_to :controller => 'home', :action => 'index'
+      end 
+      return error  
   end
   
   def any_request_for_me?

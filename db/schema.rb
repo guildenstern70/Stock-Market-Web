@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216113000) do
+ActiveRecord::Schema.define(:version => 20120713135812) do
 
   create_table "games", :force => true do |t|
     t.string "note"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20120216113000) do
     t.integer "money"
     t.integer "game_id"
   end
+
+  add_index "players", ["name"], :name => "index_players_on_name", :unique => true
 
   create_table "portfolios", :force => true do |t|
     t.integer "player_id"

@@ -40,7 +40,7 @@ class PlayerController < ApplicationController
         if newplayer.nil? or newplayer.length == 0
           redirect_to :controller => 'home', :action => 'index'
         else
-          createplayer(newplayer)
+          @error = createplayer(newplayer)
         end     
     end
     

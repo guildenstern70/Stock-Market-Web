@@ -3,3 +3,11 @@
 This application is the re-creation of the famous Amiga game StockMarket.
 
 Main Contributor: Alessio Saltarin (alessiosaltarin@gmail.com)
+
+TO RUN:
+1) thin start
+2) http://localhost:3000
+
+TO DEBUG:
+1) rails s
+2) http://localhost:3000

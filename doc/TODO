@@ -1,0 +1,2 @@
+
+1. player/list -> player.js.coffee. When user clicks the "select" list, the PeriodicalExecuter gets stopped.

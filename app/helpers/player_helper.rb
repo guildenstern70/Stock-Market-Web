@@ -2,6 +2,11 @@ module PlayerHelper
   
   DEFAULT_INITIAL_MONEY = 50000
   
+  def inviteplayer(playerid)
+      player = getcurrentplayer()
+      player.guests.create( :invited => playerid )
+  end
+  
   def createplayer(playername)
       @player = Player.new(:name => playername, :money => DEFAULT_INITIAL_MONEY)
       error = nil

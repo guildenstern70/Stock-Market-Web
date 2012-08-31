@@ -24,7 +24,7 @@ loadplayers = ->
   new Ajax.Request '/player/list.json', loadplayers_args
   
 main_loop = ->
-  pe = new PeriodicalExecuter( loadplayers, 3 )
+  pe = new PeriodicalExecuter( loadplayers, 6 )
 
 Event.observe(window, 'load', main_loop)
 

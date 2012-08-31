@@ -14,7 +14,6 @@ module TitleHelper
     player = getcurrentplayer()
     counter = 0
     stocks.each { |stock|
-      
       player.portfolios.create( :title => stock, :quantity => quantities[counter], :cost => stock.current )
       counter += 1
     }

@@ -16,6 +16,22 @@ class PlayerController < ApplicationController
         logger.debug("Player-controller-waiting")
     end
     
+    def setinvitations
+        logger.debug("player/setinvitations")
+        @guests = params[:playersids]
+        if (@guests.nil?)
+          logger.debug("No players in this game. Redirecting to list.")
+          redirect_to :controller => 'player', :action => 'list'
+        else
+          @guests.map do |guest| 
+            logger.debug( getplayername() +" has invited "+guest) 
+            inviteplayer(guest)
+          end
+        end
+    else
+        
+    end
+    
     def lookforinvitations  
         @inviter = nil
         logger.debug '======= INVITE REQUEST ========'

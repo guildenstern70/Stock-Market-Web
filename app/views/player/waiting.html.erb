@@ -9,6 +9,9 @@
 	<tr>
 		<td>
 		<table width="90%" bgcolor="#FF9999">
+		    <tr>
+		        <td>You are waiting for a game invite...</td>
+		    </tr>
 			<tr>
 				<td>
 				<div id="invitation" style="display:none">
@@ -26,9 +29,14 @@
 					</div>
 					<% end %>
 				</div>
+				</td>
 			</tr>
-		</td>
-</table>
-</td>
-</tr>
+			<tr>
+			    <td>
+			        <%= link_to "Back to lobby", { :action => 'list' }, :class => "stylebutton" %>
+			    </td>
+			</tr>
+        </table>
+        </td>
+    </tr>
 </table>

@@ -5,3 +5,10 @@ Per creare il DB da zero:
 3) rake db:migrate
 4) rake db:seed
 
+
+// DB Postgres
+USERNAME: postgres
+PASSWORD: doctor
+PORT: 5432
+Locale: Default
+

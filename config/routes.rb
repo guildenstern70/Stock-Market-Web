@@ -41,6 +41,8 @@ resources :player do
     get 'waiting'
     get 'message'
     get 'lookforinvitations'
+    get 'setinvitations'
+    post 'setinvitations'
   end
 end
 

@@ -1,20 +1,13 @@
 class GameController < ApplicationController
   include GameHelper
   
-  def create
-    
-    # Quando la logica entra qua
-    # bisogna gestire due casi:
-    # - Ho invitato TIZIO e questi ha detto sì
-    # - Sono stato invitato da CAIO e ho detto sì
-    # negli altri casi
-    # -  redirect_to :controller => 'player', :action => 'list'
-    #
-    
+  def create   
     @gameplayers = params[:playersids]
     if (@gameplayers.nil?)
+      logger.debug("No players in this game. Redirecting to list.")
       redirect_to :controller => 'player', :action => 'list'
     else
+      logger.debug("Ok, I'm creating a new game...")
       @game = Game.new()
       @game.save
       logger.debug("Creato game #{@game.id}.")

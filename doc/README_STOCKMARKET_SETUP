@@ -1,12 +1,10 @@
 // Database re-creation
-
 rake db:create
 rake db:migrate
 rake db:seed
 
 // GIT REMOTE
-
-Command: Push (save to github)
+Command: Team/Push (save to github)
 Passphrase: efedelnonledefe
 
 // DB Postgres
@@ -14,4 +12,9 @@ USERNAME: postgres
 PASSWORD: doctor
 PORT: 5432
 Locale: Default
+
+// START WEB APPLICATION
+1) thin start
+2) http://localhost:3000
+
 

@@ -9,6 +9,7 @@ invitations_args =
     inviter = transport.responseText
     if inviter.length > 1
       $('invitation').show()
+      $('waiting').hide()
       $('proposal').update(inviter + ' invites you to join a game:')
       pe.stop()
       return

@@ -4,7 +4,7 @@ module PlayerHelper
   
   def inviteplayer(playerid)
       player = getcurrentplayer()
-      player.guests.create( :invited => playerid )
+      player.guests.create( :invited => playerid, :accepted => false )
   end
   
   def createplayer(playername)
@@ -29,18 +29,21 @@ module PlayerHelper
       return error  
   end
   
-  def any_request_for_me?
-      nr = rand(0..100)
+  def any_request_for_me?  
       request = false
-      if (nr < 20)
+      myplayerid = getplayerid()
+      request = Guest.where('invited = ?', myplayerid).first
+      if (not request.nil?)
         request = true
       end
       return request
   end
   
   def get_inviter()
-      pl = Player.random
-      return pl.name
+      myplayerid = getplayerid()
+      request = Guest.where('invited = ?', myplayerid).first
+      requestor = request.player
+      return requestor.name
   end
   
   def get_players_other_than_me()

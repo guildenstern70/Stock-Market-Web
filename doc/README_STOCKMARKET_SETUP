@@ -4,7 +4,7 @@ rake db:migrate
 rake db:seed
 
 // GIT REMOTE
-Command: Team/Push (save to github)
+Commands: 1] Team/Commit 2] Team/Push (save to github)
 Passphrase: efedelnonledefe
 
 // DB Postgres

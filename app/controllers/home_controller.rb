@@ -35,6 +35,12 @@ class HomeController < ApplicationController
               deletegames
               logger.debug('... done') 
               redirect_to :action => 'commandresult', :resp => 'All games deleted'
+          when 'deleteinvitations'
+              # Delete all invitations
+              logger.debug('Deleting all invitations...')
+              deleteinvitations
+              logger.debug('... done') 
+              redirect_to :action => 'commandresult', :resp => 'All invitations deleted'
         end 
     end
     

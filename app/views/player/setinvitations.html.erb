@@ -10,6 +10,26 @@
             </tr>
             <tr>
                 <td>
+                    <form action="">
+                    <table border="1">
+                        <thead></thead>
+                            <th>Invited</th>
+                            <th>Accepted</th>
+                        </thead>
+                        <tbody>
+                            <% @guests.each do |guest| %>
+                            <tr>
+                                <td><%= guest.invited %></td>
+                                <td><%= check_box_tag 'accepted', 'yes', guest.accepted %></td>
+                            </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <%= link_to "Back to lobby", { :action => 'list' }, :class => "stylebutton" %>
                 </td>
             </tr>

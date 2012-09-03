@@ -3,7 +3,7 @@ class CreateGuests < ActiveRecord::Migration
     create_table :guests do |t|
       t.integer :invited
       t.references :player
-
+      t.boolean :accepted
       t.timestamps
     end
     add_index :guests, :player_id

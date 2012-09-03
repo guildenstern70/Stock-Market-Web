@@ -10,7 +10,11 @@
 		<td>
 		<table width="90%" bgcolor="#FF9999">
 		    <tr>
-		        <td>You are waiting for a game invite...</td>
+		        <td>
+		            <div id="waiting">
+		            You are waiting for a game invite...
+		            </div>
+		        </td>
 		    </tr>
 			<tr>
 				<td>
@@ -25,7 +29,7 @@
 					<br/>
 					<div>
 						<%= submit_tag("Yes", :name => 'commit', :class => "stylebutton") %>&nbsp;
-						<%= button_to_function("No", "decline_invite();", :class => "stylebutton") %>
+						<%= button_to_function("No", "decline_invite()", :class => "stylebutton") %>
 					</div>
 					<% end %>
 				</div>

@@ -19,7 +19,7 @@ invitations_args =
     return
 
 invitations = ->
-  new Ajax.Request '/player/lookforinvitations', invitations_args
+  new Ajax.Request '/player/invitations/waiting.json', invitations_args
   
 main_loop = ->
   pe = new PeriodicalExecuter( invitations, 3 )

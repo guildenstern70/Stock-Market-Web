@@ -1,8 +1,8 @@
-<!-- player/waiting -->
+<!-- invitations/waiting -->
 
 <% content_for :head do %>
 <%= csrf_meta_tag %>
-<%= javascript_include_tag 'waiting' %>
+<%= javascript_include_tag params[:controller] %>
 <% end %>
 
 <table border="0" width="95%" cellpadding="5">
@@ -12,7 +12,7 @@
 		    <tr>
 		        <td>
 		            <div id="waiting">
-		            You are waiting for a game invite...
+		            You are waiting for a game invitation...
 		            </div>
 		        </td>
 		    </tr>

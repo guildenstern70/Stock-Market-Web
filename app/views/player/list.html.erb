@@ -8,7 +8,7 @@
 
 	<table border="0" width="95%" cellpadding="5">
 		<tr>
-			<td width="50%"> <%= form_tag('setinvitations', :id => 'players_form') do %>
+			<td width="50%"> <%= form_tag('/player/invitations', :method => :post)  do %>
 			<% if @players.blank? %>
 			<p id="playersinline">
 				Currently, there are no players. Please wait...
@@ -16,13 +16,13 @@
 			<p id="playersinline">
 				Lobby:
 			</p> <% end %>
-			<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"),
-			:multiple => true, :size => 10 %>
+			<%= select_tag "playersids", options_from_collection_for_select(@players, "id", "name"), :multiple => true, :size => 10 %>
 			<br />
 			<br />
-			<%= submit_tag("Invite player(s) to a new game", :name => 'commit', :class => 'stylebutton') %>
+			<!-- button_to NON VA BENE! -- perche genera un'altra form -->
+			<%= button_tag("Wait for an invitation...", :type => 'button', :class => 'stylebutton', :onClick => 'window.location="invitations/waiting"') %>
 			&nbsp; - OR -
-			<%= button_tag("Wait for an invitation...", :type => 'button', :class => 'stylebutton', :onClick => 'window.location="/player/waiting"') %>
+			<%= submit_tag('Invite player(s) to a new game', :name => 'commit', :class => 'stylebutton') %>
 			<% end %> </td>
 		</tr>
 	</table>

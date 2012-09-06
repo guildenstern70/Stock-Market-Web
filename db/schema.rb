@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20120831141342) do
     t.string "note"
   end
 
-  create_table "guests", :force => true do |t|
+  create_table "invitations", :force => true do |t|
     t.integer  "invited"
     t.integer  "player_id"
     t.boolean  "accepted"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20120831141342) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "guests", ["player_id"], :name => "index_guests_on_player_id"
+  add_index "invitations", ["player_id"], :name => "index_invitations_on_player_id"
 
   create_table "players", :force => true do |t|
     t.string  "name"

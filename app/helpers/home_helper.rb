@@ -25,7 +25,7 @@ module HomeHelper
     
     # Deletes all records from the Guests table
     def deleteinvitations
-        @guests = Guest.find(:all)
+        @guests = Invitation.find(:all)
         if (@guests.length > 0)
             @guests.each { |g|
                 logger.debug("Deleting invited guest " << g.id)

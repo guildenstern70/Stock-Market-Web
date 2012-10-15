@@ -3,12 +3,19 @@ class InvitationsController < ApplicationController
   
   def index
     logger.debug("invitations/index")
-    @invitations = Invitation.where('player_id = ?', getcurrentplayer()) # Players invited by myself
+    @invitations = findallinviteeby(params[:inviterid])
     respond_to do |format|
         format.html
         format.xml { render :xml => @invitations }
         format.js { render :json => @invitations }
     end
+  end
+  
+  def accept
+    logger.debug("invitations/accept") 
+    inviter_id = accept_invitation()
+    logger.debug("Invitation has been accepted.")
+    redirect_to :action => 'index', :inviterid => inviter_id
   end
   
   def waiting
@@ -35,6 +42,7 @@ class InvitationsController < ApplicationController
       redirect_to :controller => 'player', :action => 'list'
     else
       deleteolderinvitations()
+      invitemyself()
       invitedpls.map do |invited| 
         logger.debug( getplayername() +" has invited " + invited.name) 
         createinvitation(invited.id)

@@ -9,22 +9,22 @@
         <table width="90%" bgcolor="#FF9999">
             <tr>
                 <td><p>
-                    Waiting for player(s) to accept your invitations...</p>
+                    Waiting for player(s) to begin the game...</p>
                 </td>
             </tr>
             <tr>
                 <td>
                     <form action="">
-                    <table border="1">
+                    <table border="1" width="80%">
                         <thead></thead>
-                            <th>Invited</th>
+                            <th width="75%">Invited</th>
                             <th>Accepted</th>
                         </thead>
                         <tbody>
                             <% @invitations.each do |invitation| %>
                             <tr>
-                                <td><%= invitation.invited %></td>
-                                <td><%= check_box_tag 'accepted', 'yes', invitation.accepted %></td>
+                                <td><%= invitation.name %></td>
+                                <td><%= check_box_tag 'accepted' + invitation.id.to_s, 'yes', invitation.accepted %></td>
                             </tr>
                             <% end %>
                             <tr>
@@ -40,7 +40,7 @@
             <tr><td>&nbsp;</td></tr>
             <tr>
                 <td>
-                    <%= link_to "Back to lobby", { :action => 'list' }, :class => "stylebutton" %>
+                    <%= link_to "Back to lobby", { :controller => 'player', :action => 'list' }, :class => "stylebutton" %>
                 </td>
             </tr>
         </table>

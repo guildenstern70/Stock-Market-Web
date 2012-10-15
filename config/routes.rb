@@ -24,6 +24,7 @@ end
 resources :portfolio
 
 # Single resource: just one player is THE PLAYER (myself)
+# One player has many invitations
 resources :player do
   collection do
     get 'list'
@@ -31,6 +32,7 @@ resources :player do
     resources :invitations do
       collection do
         get 'waiting'
+        post 'accept'
       end
     end
   end

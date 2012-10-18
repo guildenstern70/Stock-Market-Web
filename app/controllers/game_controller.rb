@@ -11,14 +11,11 @@ class GameController < ApplicationController
       logger.debug("Ok, I'm creating a new game...")
       @game = Game.new()
       @game.save
-      logger.debug("Creato game #{@game.id}.")
-      
-      # Add current session player to game
-      addplayertogame(getplayerid)
-      
+      logger.debug("Game #{@game.id} created.")
       @gameplayers.each { |playerid|
          addplayertogame(playerid)
       }
+      redirect_to :action => "show", :id => @game.id
     end
   end
   

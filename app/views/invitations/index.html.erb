@@ -6,25 +6,27 @@
 <table border="0" width="95%" cellpadding="5">
     <tr>
         <td>
-        <table width="90%" bgcolor="#FF9999">
+        <table width="100%" border="0">
             <tr>
-                <td><p>
-                    Waiting for player(s) to begin the game...</p>
+                <td>
+                    <p>
+                    Waiting for player(s) to begin the game...
+                    </p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <form action="">
-                    <table border="1" width="80%">
-                        <thead></thead>
-                            <th width="75%">Invited</th>
-                            <th>Accepted</th>
+                    <%= form_tag( {:controller => "game", :action => "create", :method => "post"} , {:id=>'invitations'}) do %>
+                    <table border="0" width="45%">
+                        <thead>
+                            <th width="75%" align="left">Invited</th>
+                            <th align="left">Accepted</th>
                         </thead>
                         <tbody>
                             <% @invitations.each do |invitation| %>
                             <tr>
                                 <td><%= invitation.name %></td>
-                                <td><%= check_box_tag 'accepted' + invitation.id.to_s, 'yes', invitation.accepted %></td>
+                                <td><%= check_box_tag 'playersids[]', invitation.id, invitation.accepted, :id => 'accepted' + invitation.id.to_s %></td>
                             </tr>
                             <% end %>
                             <tr>
@@ -34,10 +36,13 @@
                             </tr>
                         </tbody>
                     </table>
-                    </form>
+                    <% end %>
                 </td>
+
             </tr>
-            <tr><td>&nbsp;</td></tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
             <tr>
                 <td>
                     <%= link_to "Back to lobby", { :controller => 'player', :action => 'list' }, :class => "stylebutton" %>

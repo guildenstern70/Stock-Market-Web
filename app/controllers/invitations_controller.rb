@@ -2,24 +2,32 @@ class InvitationsController < ApplicationController
   include InvitationsHelper
   
   def index
-    logger.debug("invitations/index")
-    @invitations = findallinviteeby(params[:inviterid])
+    logger.debug("player/invitations/index")
+    inviter_id = params[:inviterid]
+    logger.debug("  > Inviter_id = " + inviter_id.to_s) 
+    @invitations = findallinviteeby(inviter_id)
+    logger.debug("  > Invitations =  " + @invitations.length.to_s) 
+    @iamcreator = inviter_id.nil?
+    logger.debug("  > I am Creator =  " + @iamcreator.to_s) 
+    game = getcurrentplayer().game
+    logger.debug("  > Game =  " + game.id.to_s) if !game.nil? 
+    response = { :invitations => @invitations, :iamcreator => @iamcreator, :game => game }
     respond_to do |format|
         format.html
-        format.xml { render :xml => @invitations }
-        format.js { render :json => @invitations }
+        format.xml { render :xml => response }
+        format.js { render :json => response }
     end
   end
   
   def accept
-    logger.debug("invitations/accept") 
+    logger.debug("player/invitations/accept") 
     inviter_id = accept_invitation()
     logger.debug("Invitation has been accepted.")
     redirect_to :action => 'index', :inviterid => inviter_id
   end
   
   def waiting
-    logger.debug("invitations/waiting")  
+    logger.debug("player/invitations/waiting")  
     @inviter = nil
     if any_request_for_me?
       logger.debug 'There is an invitation for me!'
@@ -35,7 +43,7 @@ class InvitationsController < ApplicationController
   end
   
   def create
-    logger.debug("invitations/create")
+    logger.debug("player/invitations/create")
     invitedpls = Player.find(params[:playersids])
     if (invitedpls.nil?)
       logger.debug("No players invited. Redirecting to list.")

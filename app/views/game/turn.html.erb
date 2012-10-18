@@ -1,0 +1,21 @@
+<h1>Current Game</h1>
+<%= form_for(@game) do |f| %>
+    <%= f.label 'Game number:' %><br />
+    <%= f.text_field :id %><br /><br />
+<% end %>
+<h1>Players</h1>
+<table border="1" cellpadding="1" cellspacing="1" width="60%">
+  <tr>
+    <th>Name</th>
+    <th>Money</th>
+  </tr>
+ 
+<% @players.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= number_to_currency(player.money) %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+

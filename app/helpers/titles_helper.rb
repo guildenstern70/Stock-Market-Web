@@ -1,4 +1,4 @@
-module TitleHelper
+module TitlesHelper
   
   def find_stocks(stock_ids)
     stocks = Array.new

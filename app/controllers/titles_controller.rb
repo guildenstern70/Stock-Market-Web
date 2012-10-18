@@ -1,5 +1,5 @@
-class TitleController < ApplicationController
-  include TitleHelper
+class TitlesController < ApplicationController
+  include TitlesHelper
   
   def list
     playerid = getplayerid()
@@ -53,6 +53,6 @@ class TitleController < ApplicationController
   end
 
   def index
-    redirect_to :action => 'list'  # redirects to Title/List
+    redirect_to :action => 'list'  # redirects to Titles/List
   end
 end

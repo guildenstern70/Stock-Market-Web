@@ -1,7 +1,18 @@
 <div align="center">
-<a href="/title/list">
-<%= image_tag "marketopen.png", :alt => "Market Open", :border => "0" %>
-</a>
-</div>
-&nbsp;&nbsp;Welcome to game <%= @gameid %> - Click on image to start - 
+    <table>
+        <tr>
+            <td><a href="/titles/list">
+                <%= image_tag "marketopen.png", :alt => "Market Open", :border => "0" %>
+            </a></td>
+        </tr>
+        <tr>
+            <td>
+                Game <%= @game.id %> - <b>Click on image to start</b> - Players: 
+<% @players.each do |player| %>
+<span><%= player.name %>&nbsp;</span>
+<% end %>
 <%= "#{session[:playername]} session id = #{request.session_options[:id]}" %>
+            </td>
+        </tr>
+</table>
+</div>

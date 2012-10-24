@@ -12,6 +12,14 @@ module HomeHelper
         end
     end
     
+    def deleteplayerbyname(name)
+        plr = Player.where("name = ?", name).first
+        if not plr.nil?
+          logger.debug("Deleting player => " << plr.name)
+          plr.destroy
+        end
+    end
+    
     # Deletes all records from the Games table
     def deletegames
         @games = Game.find(:all)

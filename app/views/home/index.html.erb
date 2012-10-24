@@ -12,6 +12,9 @@
         	<% end %>
         	<br />
         	<%= submit_tag("Join games room") %>	
+        	<p>
+        	    <a href="/home/startgame">Fast game setup [DEBUG]</a>
+        	</p>
     	<% end %>
     <% else %>
         <a href="/titles/list">Proceed to game, <%= session[:playername] %></a> - or - 

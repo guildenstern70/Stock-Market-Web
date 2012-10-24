@@ -13,7 +13,7 @@ class GameController < ApplicationController
       @game.save
       logger.debug("Game #{@game.id} created.")
       @gameplayers.each { |playerid|
-         addplayertogame(playerid)
+         addplayeridtogame(playerid, @game)
       }
       redirect_to :action => "show", :id => @game.id
     end
@@ -23,6 +23,7 @@ class GameController < ApplicationController
     logger.debug("game/show")
     gameid = params[:id]
     @game = Game.find(gameid)
+    logger.debug("Game id is: #{@game.id}")
     @players = get_players_of_the_game(gameid)
   end
   

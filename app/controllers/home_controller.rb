@@ -2,8 +2,29 @@ class HomeController < ApplicationController
     include HomeHelper
               
     def index
+        @error = params[:error]
     end
     
+    def startgame
+        logger.debug("Starting a new game with 2 players")
+        logger.debug("1) Creating players")
+        # Create players
+        deleteplayerbyname('Alessio')
+        deleteplayerbyname('Elena')
+        logger.debug(createplayer('Alessio'))
+        logger.debug(createplayer('Elena'))
+        # Create game
+        logger.debug("2) Creating game")
+        @game = Game.new()
+        @game.save
+        logger.debug("Game #{@game.id} created.")    
+        pl1 = getplayerbyname("Alessio")
+        addplayertogame(pl1, @game)
+        pl2 = getplayerbyname("Elena")
+        addplayertogame(pl2, @game)
+        redirect_to :controller => "game", :action => "show", :id => @game.id
+    end
+      
     def logout
         # Delete myself
         player = getcurrentplayer()

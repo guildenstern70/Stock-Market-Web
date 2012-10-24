@@ -2,8 +2,16 @@
 <%= form_for(@player) do |f| %>
     <%= f.label :name %><br />
     <%= f.text_field :name %><br /><br />
-    <%= f.label 'Current game' %><br />
-    <%= f.text_field :game %><br /><br />
+    
+    <% if @gameid.nil? %>
+        <%= f.label 'The player is not playing any game (yet)' %><br />
+    <% else %>
+        <%= f.label 'Current game' %><br />
+        <%= f.text_field :game_id %><br /><br />
+    <% end %>
 <% end %><br />
 <p>Session player ID : <%= @session_player_id %></p>
-<%= button_tag("Logout", :type => 'button', :onClick => 'window.location="/home/logout"') %>
+<%= link_to_unless(@gameid.nil?, "Back to game", { :controller => 'game', :action => 'show', :id => @gameid }, 
+    :class => "stylebutton") %>
+&nbsp;
+<%= button_tag("Logout", :type => 'button', :onClick => 'window.location="/home/logout"', :class => "stylebutton") %>

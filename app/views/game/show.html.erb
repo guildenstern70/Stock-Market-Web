@@ -9,7 +9,9 @@
             <td>
                 Game <%= @game.id %> - <b>Click on image to start</b> - Players: 
 <% @players.each do |player| %>
-<span><%= player.name %>&nbsp;</span>
+<span>
+<%= link_to player.name, { :controller => 'player', :action => 'show', :id => player.id  } %>
+</span>
 <% end %>
 <%= "#{session[:playername]} session id = #{request.session_options[:id]}" %>
             </td>

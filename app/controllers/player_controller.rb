@@ -25,11 +25,19 @@ class PlayerController < ApplicationController
         else
           @error = createplayer(newplayer)
         end     
+        if @error.starts_with?('Error')
+          redirect_to :controller => 'home', :action => 'index', :error => @error
+        else
+          redirect_to :action => 'list'
+        end
     end
     
     def show
-        logger.debug("player/create")
+        logger.debug("player/show")
         @player = Player.find(params[:id])
+        @gameid = @player.game_id
+        logger.debug("Showing player #{@player.name}")
+        logger.debug("Player is into game #{@gameid}") if not @gameid.nil?
         @session_player_id = session[:playerid]
     end
     
